@@ -8,9 +8,9 @@
 - company: Naver
   position: Server engineer for naver news service
   duration:  2017.12 ~ 2019.04
-  summary: '<p>Development for legacy news service using JAVA, Spring </p>
+  summary: '<p>Development for news service using JAVA, Spring (500 million view per day service)</p>
   <p>News clustering system and API using that. use python, node.js, Spring boot (Micro service)</p>
-  <p>API for article comment option. Using Spring boot, MongoDB</p>
+  <p>Develop and managed API 200 million request per day. for article comment option. Using Spring boot, MongoDB</p>
   <p>DL model for news section classification, block abuse to article comment. using tensorflow</p>
   <p>Find series news in news article pool. Using Scala + Spark</p>'
 
