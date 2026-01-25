@@ -1,0 +1,42 @@
+{{ define "main" }}
+<article itemscope itemtype="https://schema.org/BlogPosting">
+  <header>
+    {{ with .Params.categories }}
+    <div class="post-categories">
+      {{ range . }}
+      <a href="{{ "categories/" | relURL }}{{ . | urlize }}" class="category-badge">{{ . }}</a>
+      {{ end }}
+    </div>
+    {{ end }}
+    <h1 class="post-title" itemprop="headline">{{ .Title }}</h1>
+    <p class="post-meta">
+      <time datetime="{{ .Date.Format "2006-01-02" }}" itemprop="datePublished">{{ .Date.Format "2006.01.02" }}</time>
+      <span class="post-author">· 박중수</span>
+      {{ if .ReadingTime }}<span>· {{ .ReadingTime }}분 소요</span>{{ end }}
+    </p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    {{ .Content }}
+  </div>
+
+  {{ with .Params.tags }}
+  <div class="tags">
+    {{ range . }}
+    <a href="{{ "tags/" | relURL }}{{ . | urlize }}" class="tag" rel="tag">{{ . }}</a>
+    {{ end }}
+  </div>
+  {{ end }}
+</article>
+
+{{ if or .PrevInSection .NextInSection }}
+<nav class="post-nav" aria-label="Post navigation">
+  {{ with .PrevInSection }}
+  <a href="{{ .RelPermalink }}" rel="prev">← {{ .Title }}</a>
+  {{ end }}
+  {{ with .NextInSection }}
+  <a href="{{ .RelPermalink }}" rel="next">{{ .Title }} →</a>
+  {{ end }}
+</nav>
+{{ end }}
+{{ end }}

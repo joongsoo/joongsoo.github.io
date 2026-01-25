@@ -1,0 +1,70 @@
+baseURL = 'https://joongsoo.github.io/'
+languageCode = 'ko-KR'
+defaultContentLanguage = 'ko'
+title = 'STARTUP LIFE'
+theme = 'warm-minimal'
+
+# SEO
+enableRobotsTXT = true
+canonifyURLs = true
+
+[taxonomies]
+  tag = 'tags'
+  category = 'categories'
+
+[params]
+  description = '실행하고 깨져가며 배워가는 기록을 남기는 블로그'
+  author = 'Joongsoo Park'
+  email = 'wndtn853@gmail.com'
+  linkedin = 'https://www.linkedin.com/in/fitz-sw'
+  # ogImage = '/images/og-image.png'  # Open Graph 이미지 (선택)
+  # twitterHandle = 'your_twitter'     # Twitter 핸들 (선택)
+
+  # 카테고리 목록 (사이드바에 표시)
+  categoryList = [
+    'AI / ML',
+    'Backend',
+    'Frontend',
+    'DevOps',
+    'Data Engineering',
+    'Mobile',
+    'Security',
+    'General'
+  ]
+
+[menus]
+  [[menus.main]]
+    name = 'Posts'
+    url = '/posts/'
+    weight = 1
+  [[menus.main]]
+    name = 'About'
+    url = '/about/'
+    weight = 2
+
+[pagination]
+  pagerSize = 10
+
+[markup]
+  [markup.highlight]
+    style = 'github'
+    lineNos = false
+    guessSyntax = true
+    noClasses = true
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 3
+
+[outputs]
+  home = ['HTML', 'RSS']
+  section = ['HTML', 'RSS']
+
+[sitemap]
+  changefreq = 'weekly'
+  priority = 0.5
+
+[minify]
+  minifyOutput = true

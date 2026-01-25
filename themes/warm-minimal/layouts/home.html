@@ -1,0 +1,128 @@
+{{ define "main" }}
+{{ $posts := where site.RegularPages "Section" "posts" }}
+<div class="posts-layout">
+  <!-- Sidebar (appears first for mobile, positioned fixed on desktop) -->
+  <aside class="posts-sidebar">
+    <div class="category-filter">
+      <div class="category-filter-header">
+        <h3>카테고리</h3>
+        <button type="button" class="category-reset" onclick="resetCategories()">초기화</button>
+      </div>
+      <ul class="category-list">
+        {{ $categories := slice }}
+        {{ range $posts }}
+          {{ with .Params.categories }}
+            {{ range . }}
+              {{ $categories = $categories | append . }}
+            {{ end }}
+          {{ end }}
+        {{ end }}
+        {{ $categories = $categories | uniq | sort }}
+        {{ if $categories }}
+          {{ range $categories }}
+          <li>
+            <label class="category-item">
+              <input type="checkbox" value="{{ . }}">
+              <span class="category-checkbox"></span>
+              <span class="category-name">{{ . }}</span>
+            </label>
+          </li>
+          {{ end }}
+        {{ else }}
+          {{ range $.Site.Params.categoryList }}
+          <li>
+            <label class="category-item">
+              <input type="checkbox" value="{{ . }}">
+              <span class="category-checkbox"></span>
+              <span class="category-name">{{ . }}</span>
+            </label>
+          </li>
+          {{ end }}
+        {{ end }}
+      </ul>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="posts-main">
+    <header class="posts-header">
+      <p class="posts-description">실행하고 깨져가며 배워가는 기록을 남기는 블로그</p>
+    </header>
+
+    <div class="post-cards">
+      {{ range $posts }}
+      <article class="post-card" {{ with .Params.categories }}data-categories="{{ delimit . "," }}"{{ end }}>
+        <div class="post-card-content">
+          <div class="post-card-meta">
+            {{ with .Params.categories }}
+            {{ range . }}
+            <span class="category-badge">{{ . }}</span>
+            {{ end }}
+            {{ end }}
+          </div>
+          <h2 class="post-card-title">
+            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+          </h2>
+          {{ if .Description }}
+          <p class="post-card-excerpt">{{ .Description }}</p>
+          {{ else if .Summary }}
+          <p class="post-card-excerpt">{{ .Summary | plainify | truncate 120 }}</p>
+          {{ end }}
+          <time class="post-card-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006.01.02" }}</time>
+        </div>
+        {{ with .Params.thumbnail }}
+        <div class="post-card-thumbnail">
+          <img src="{{ . }}" alt="{{ $.Title }}" loading="lazy">
+        </div>
+        {{ end }}
+      </article>
+      {{ end }}
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  const categoryFilter = document.querySelector('.category-filter');
+  const categoryList = document.querySelector('.category-list');
+  const cards = document.querySelectorAll('.post-card');
+
+  // Pre-compute card categories for faster filtering
+  const cardData = Array.from(cards).map(card => ({
+    el: card,
+    categories: (card.dataset.categories || '').split(',')
+  }));
+
+  // Optimized filter function
+  function filterByCategory() {
+    const checked = categoryList.querySelectorAll('input:checked');
+    const selectedCategories = Array.from(checked).map(cb => cb.value);
+    const hasFilter = selectedCategories.length > 0;
+
+    requestAnimationFrame(() => {
+      cardData.forEach(({ el, categories }) => {
+        el.style.display = (!hasFilter || selectedCategories.some(cat => categories.includes(cat))) ? '' : 'none';
+      });
+    });
+  }
+
+  // Reset function
+  window.resetCategories = function() {
+    categoryList.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+    filterByCategory();
+  };
+
+  // Event delegation for checkboxes - instant response
+  categoryList.addEventListener('change', filterByCategory);
+
+  // Toggle for mobile with immediate response
+  const filterHeader = document.querySelector('.category-filter-header');
+  if (filterHeader) {
+    filterHeader.addEventListener('click', function(e) {
+      if (e.target.closest('.category-reset')) return;
+      categoryFilter.classList.toggle('is-open');
+    });
+  }
+})();
+</script>
+{{ end }}
