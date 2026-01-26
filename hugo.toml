@@ -20,6 +20,11 @@ canonifyURLs = true
   # ogImage = '/images/og-image.png'  # Open Graph 이미지 (선택)
   # twitterHandle = 'your_twitter'     # Twitter 핸들 (선택)
 
+  # 검색엔진 웹마스터 도구 인증 (각 서비스에서 발급받은 코드 입력)
+  googleSiteVerification = 'CZJF-FhBfCxPY97jRmLdhJv44oooulJTchVBFbPSJU8'    # Google Search Console
+  # naverSiteVerification = ''     # Naver Search Advisor
+  # bingSiteVerification = ''      # Bing Webmaster Tools
+
   # 카테고리 목록 (사이드바에 표시)
   categoryList = [
     'AI / ML',
@@ -65,6 +70,7 @@ canonifyURLs = true
 [sitemap]
   changefreq = 'weekly'
   priority = 0.5
+  filename = 'sitemap.xml'
 
 [minify]
   minifyOutput = true

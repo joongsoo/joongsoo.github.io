@@ -102,5 +102,21 @@
 {{ if .Params.noindex }}
 <meta name="robots" content="noindex, nofollow">
 {{ else }}
-<meta name="robots" content="index, follow">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+{{ end }}
+
+{{/* Keywords from tags */}}
+{{ with .Params.tags }}
+<meta name="keywords" content="{{ delimit . ", " }}">
+{{ end }}
+
+{{/* Search Engine Verification */}}
+{{ with site.Params.googleSiteVerification }}
+<meta name="google-site-verification" content="{{ . }}">
+{{ end }}
+{{ with site.Params.naverSiteVerification }}
+<meta name="naver-site-verification" content="{{ . }}">
+{{ end }}
+{{ with site.Params.bingSiteVerification }}
+<meta name="msvalidate.01" content="{{ . }}">
 {{ end }}
