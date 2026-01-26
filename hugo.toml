@@ -23,7 +23,6 @@ canonifyURLs = true
   # 검색엔진 웹마스터 도구 인증 (각 서비스에서 발급받은 코드 입력)
   googleSiteVerification = 'CZJF-FhBfCxPY97jRmLdhJv44oooulJTchVBFbPSJU8'    # Google Search Console
   naverSiteVerification = '3721ca759a8491ad532ad6a9f711b25a892cda62'     # Naver Search Advisor
-  # bingSiteVerification = ''      # Bing Webmaster Tools
 
   # 카테고리 목록 (사이드바에 표시)
   categoryList = [
