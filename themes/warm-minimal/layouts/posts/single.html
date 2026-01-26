@@ -27,6 +27,13 @@
     {{ end }}
   </div>
   {{ end }}
+
+  <div class="post-hits">
+    {{ $url := .Permalink | replaceRE "^https?://" "" | replaceRE "/$" "" }}
+    <a href="https://hits.sh/{{ $url }}/" target="_blank" rel="noopener">
+      <img src="https://hits.sh/{{ $url }}.svg" alt="조회수" />
+    </a>
+  </div>
 </article>
 
 {{ if or .PrevInSection .NextInSection }}

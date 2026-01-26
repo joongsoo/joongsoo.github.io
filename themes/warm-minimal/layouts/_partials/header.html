@@ -1,7 +1,10 @@
 <div class="header-inner">
   <a href="{{ site.Home.RelPermalink }}" class="site-title">{{ site.Title }}</a>
   {{ with site.Menus.main }}
-  <nav class="main-nav" aria-label="Main navigation">
+  <button class="hamburger-btn" aria-label="메뉴 열기" aria-expanded="false" aria-controls="main-nav">
+    <span class="hamburger-icon"></span>
+  </button>
+  <nav class="main-nav" id="main-nav" aria-label="Main navigation">
     <ul>
       {{ range . }}
       <li><a href="{{ .URL }}"{{ if $.IsMenuCurrent "main" . }} aria-current="page"{{ end }}>{{ .Name }}</a></li>

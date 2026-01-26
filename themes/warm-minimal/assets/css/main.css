@@ -321,6 +321,104 @@ hr {
   color: var(--heading);
 }
 
+/* Hamburger Button - Hidden on desktop */
+.hamburger-btn {
+  display: none;
+  background: none;
+  border: none;
+  padding: var(--space-2);
+  cursor: pointer;
+  z-index: 101;
+}
+
+.hamburger-icon {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background-color: var(--heading);
+  position: relative;
+  transition: background-color 0.2s ease;
+}
+
+.hamburger-icon::before,
+.hamburger-icon::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 24px;
+  height: 2px;
+  background-color: var(--heading);
+  transition: transform 0.2s ease;
+}
+
+.hamburger-icon::before {
+  top: -7px;
+}
+
+.hamburger-icon::after {
+  bottom: -7px;
+}
+
+/* Hamburger active state (X shape) */
+.hamburger-btn.is-active .hamburger-icon {
+  background-color: transparent;
+}
+
+.hamburger-btn.is-active .hamburger-icon::before {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.hamburger-btn.is-active .hamburger-icon::after {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ========================================
+   Promo Banner
+   ======================================== */
+
+.promo-banner-wrapper {
+  position: sticky;
+  top: var(--header-height);
+  z-index: 99;
+  background-color: var(--bg-secondary);
+  border-bottom: 1px solid var(--border);
+}
+
+.promo-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-2) 0;
+}
+
+.promo-text {
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--heading);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.promo-cta {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  background-color: var(--accent);
+  color: white;
+  font-size: 11px;
+  font-weight: 600;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background-color 0.15s ease;
+}
+
+.promo-cta:hover {
+  background-color: var(--heading);
+  color: white;
+}
+
 /* ========================================
    Main Content
    ======================================== */
@@ -487,6 +585,21 @@ blockquote p:last-child {
 .tag:hover {
   background-color: var(--accent);
   color: white;
+}
+
+/* ========================================
+   Post Hits (View Count)
+   ======================================== */
+
+.post-hits {
+  margin-top: var(--space-6);
+  text-align: center;
+}
+
+.post-hits img {
+  height: 20px;
+  margin: 0;
+  border-radius: 3px;
 }
 
 /* ========================================
@@ -1094,16 +1207,57 @@ th {
     line-height: 1.65;
   }
 
+  /* Mobile Header with Hamburger */
   .header-inner {
-    flex-direction: column;
-    align-items: flex-start;
-    height: auto;
-    padding: var(--space-4) 0;
-    gap: var(--space-3);
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: var(--header-height);
+    padding: 0;
+  }
+
+  .hamburger-btn {
+    display: block;
+  }
+
+  .main-nav {
+    position: fixed;
+    top: var(--header-height);
+    left: 0;
+    right: 0;
+    background-color: var(--bg);
+    border-bottom: 1px solid var(--border-light);
+    padding: var(--space-4) var(--space-5);
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: transform 0.25s ease, opacity 0.25s ease, visibility 0.25s ease;
+    z-index: 99;
+  }
+
+  .main-nav.is-open {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
   }
 
   .main-nav ul {
-    gap: var(--space-4);
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .main-nav li {
+    border-bottom: 1px solid var(--border-light);
+  }
+
+  .main-nav li:last-child {
+    border-bottom: none;
+  }
+
+  .main-nav a {
+    display: block;
+    padding: var(--space-3) 0;
+    font-size: var(--text-base);
   }
 
   main {
@@ -1116,6 +1270,26 @@ th {
 
   h3 {
     margin-top: var(--space-8);
+  }
+
+  /* Promo banner mobile */
+  .promo-banner-wrapper {
+    top: var(--header-height);
+  }
+
+  .promo-banner {
+    gap: var(--space-3);
+    padding: var(--space-2) 0;
+  }
+
+  .promo-text {
+    font-size: var(--text-sm);
+    flex: 1;
+  }
+
+  .promo-cta {
+    padding: 4px 12px;
+    font-size: var(--text-xs);
   }
 
   /* Posts layout mobile */
@@ -1178,6 +1352,14 @@ th {
 
   .author-badge {
     background-color: var(--border);
+  }
+
+  .promo-banner-wrapper {
+    background-color: var(--bg-secondary);
+  }
+
+  .main-nav {
+    background-color: var(--bg);
   }
 }
 

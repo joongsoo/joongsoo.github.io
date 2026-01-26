@@ -9,6 +9,16 @@
       {{ partial "header.html" . }}
     </div>
   </header>
+  {{ if and .IsPage (eq .Section "posts") }}
+  <div class="promo-banner-wrapper">
+    <div class="container">
+      <div class="promo-banner">
+        <p class="promo-text">AI시대 가장 중요한 "구조"까지 설계하는 외주 개발</p>
+        <a href="/contact" class="promo-cta">자세히 보기</a>
+      </div>
+    </div>
+  </div>
+  {{ end }}
   <main>
     <div class="container">
       {{ block "main" . }}{{ end }}
@@ -19,5 +29,6 @@
       {{ partial "footer.html" . }}
     </div>
   </footer>
+  {{ partial "head/js.html" . }}
 </body>
 </html>
