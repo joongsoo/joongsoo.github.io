@@ -1,7 +1,7 @@
 baseURL = 'https://joongsoo.github.io/'
 languageCode = 'ko-KR'
 defaultContentLanguage = 'ko'
-title = 'STARTUP LIFE'
+title = 'STARTUP LOG'
 theme = 'warm-minimal'
 
 # SEO
@@ -13,7 +13,7 @@ canonifyURLs = true
   category = 'categories'
 
 [params]
-  description = '실행하고 깨져가며 배워가는 기록을 남기는 블로그'
+  description = '창업가로 살아가면서 그때그때의 생각을 저장하는 곳'
   author = 'Joongsoo Park'
   email = 'wndtn853@gmail.com'
   linkedin = 'https://www.linkedin.com/in/fitz-sw'
