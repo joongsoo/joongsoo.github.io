@@ -3,7 +3,7 @@ date = '2025-11-08'
 draft = false
 title = '내 탓이오 마인드로 성장하기'
 description = '남 탓 대신 내 탓을 하면 통제 가능한 영역이 생기고, 더 나은 사람으로 성장할 수 있습니다.'
-categories = ['커리어 관리']
+categories = ['마인드셋']
 tags = ['마인드셋', '성장', '협업']
 +++
 
